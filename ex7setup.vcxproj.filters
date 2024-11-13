@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pages">
+      <UniqueIdentifier>{bb35ead0-1d21-4182-ba15-f1940f1d8b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{34536918-f6d6-4885-9bf6-d7baea7136c8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="page1.cpp">
+      <Filter>Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="page2.cpp">
+      <Filter>Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="page3.cpp">
+      <Filter>Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="installer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="page1.h">
+      <Filter>Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="page2.h">
+      <Filter>Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="shareddata.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="page3.h">
+      <Filter>Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="installer.h" />
+    <ClInclude Include="framework.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="wizardv1.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
