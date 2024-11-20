@@ -26,7 +26,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR, int nCmd
 	psh.nStartPage = 0;
 	psh.nPages = NUM_PAGES;
 	PropertySheet(&psh);
-	
 
 	return FALSE;
 }

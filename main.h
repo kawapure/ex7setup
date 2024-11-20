@@ -1,8 +1,8 @@
 #pragma once
 #include "framework.h"
-#include "page1.h"
-#include "page2.h"
-#include "page3.h"
+#include "pages/page1.h"
+#include "pages/page2.h"
+#include "pages/page3.h"
 
 #define NUM_PAGES 3
 

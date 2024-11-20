@@ -9,28 +9,29 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="page1.cpp">
+    <ClCompile Include="pages\page1.cpp">
       <Filter>Pages</Filter>
     </ClCompile>
-    <ClCompile Include="page2.cpp">
+    <ClCompile Include="pages\page2.cpp">
       <Filter>Pages</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="page3.cpp">
+    <ClCompile Include="pages\page3.cpp">
       <Filter>Pages</Filter>
     </ClCompile>
     <ClCompile Include="installer.cpp" />
+    <ClCompile Include="mui.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="page1.h">
+    <ClInclude Include="pages\page1.h">
       <Filter>Pages</Filter>
     </ClInclude>
-    <ClInclude Include="page2.h">
+    <ClInclude Include="pages\page2.h">
       <Filter>Pages</Filter>
     </ClInclude>
     <ClInclude Include="shareddata.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="page3.h">
+    <ClInclude Include="pages\page3.h">
       <Filter>Pages</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -38,6 +39,7 @@
     </ClInclude>
     <ClInclude Include="installer.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="mui.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.bmp">
