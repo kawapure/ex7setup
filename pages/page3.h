@@ -1,6 +1,8 @@
 #pragma once
+
 #include "framework.h"
 #include "resource.h"
+#include "page3_rsrc.h"
 #include "shareddata.h"
 #include "installer.h"
 

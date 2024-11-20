@@ -9,9 +9,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR, int nCmd
 	ZeroMemory(&wizdata, sizeof(wizdata));
 	hInst = hInstance;
 
-	CPage1 pg1 = CPage1(hInst, psppage, &wizdata);
-	CPage2 pg2 = CPage2(hInst, psppage, &wizdata);
-	CPage3 pg3 = CPage3(hInst, psppage, &wizdata);
+	try
+	{
+		CPage1 pg1 = CPage1(hInst, psppage, &wizdata);
+		CPage2 pg2 = CPage2(hInst, psppage, &wizdata);
+		CPage3 pg3 = CPage3(hInst, psppage, &wizdata);
+	}
+	catch (std::exception &e)
+	{
+		LPCSTR szExceptionMessage = e.what();
+
+		MessageBoxA(NULL, szExceptionMessage, "Error", MB_OK);
+	}
 
 	PROPSHEETHEADER psh;
 	ZeroMemory(&psh, sizeof(psh));

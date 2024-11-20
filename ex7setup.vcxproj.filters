@@ -40,6 +40,9 @@
     <ClInclude Include="installer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="mui.h" />
+    <ClInclude Include="pages\page1_rsrc.h" />
+    <ClInclude Include="pages\page2_rsrc.h" />
+    <ClInclude Include="pages\page3_rsrc.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.bmp">
@@ -53,5 +56,8 @@
     <ResourceCompile Include="Resource.rc">
       <Filter>Resources</Filter>
     </ResourceCompile>
+    <ResourceCompile Include="pages\page1.rc" />
+    <ResourceCompile Include="pages\page2.rc" />
+    <ResourceCompile Include="pages\page3.rc" />
   </ItemGroup>
 </Project>

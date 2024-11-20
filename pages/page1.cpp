@@ -12,7 +12,14 @@ CPage1::CPage1(HINSTANCE hInst, HPROPSHEETPAGE *pPsPages, SHAREDWIZDATA* pWizDat
 	psp.pszHeaderTitle = MAKEINTRESOURCE(IDS_PAGE1_TITLE);
 	psp.pszTemplate = MAKEINTRESOURCE(IDD_PAGE1);
 	psp.pfnDlgProc = (DLGPROC)DlgProc;
-	pPsPages[pageIndex] = CreatePropertySheetPage(&psp);
+
+	HPROPSHEETPAGE hPsp = nullptr;
+	pPsPages[pageIndex] = hPsp = CreatePropertySheetPage(&psp);
+
+	if (!hPsp)
+	{
+		throw std::exception("Failed to create page.");
+	}
 }
 
 CPage1::~CPage1()

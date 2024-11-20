@@ -153,8 +153,11 @@
     <ClInclude Include="mui.h" />
     <ClInclude Include="pages\page1.h" />
     <ClInclude Include="pages\page2.h" />
+    <ClInclude Include="pages\page2_rsrc.h" />
     <ClInclude Include="pages\page3.h" />
+    <ClInclude Include="pages\page3_rsrc.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="pages\page1_rsrc.h" />
     <ClInclude Include="shareddata.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
@@ -167,6 +170,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="pages\page1.rc" />
+    <ResourceCompile Include="pages\page2.rc" />
+    <ResourceCompile Include="pages\page3.rc" />
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>

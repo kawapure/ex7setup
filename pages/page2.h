@@ -1,6 +1,8 @@
 #pragma once
+
 #include "framework.h"
 #include "resource.h"
+#include "page2_rsrc.h"
 #include "shareddata.h"
 
 class CPage2

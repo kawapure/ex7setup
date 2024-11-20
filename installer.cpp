@@ -1,5 +1,7 @@
 #include "installer.h"
 
+#include "pages/page3_rsrc.h"
+
 std::wstring GetFileVersion(LPCWSTR path)
 {
 	DWORD verHandle = 0;
