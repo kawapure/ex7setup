@@ -1,19 +1,16 @@
 #include "page2.h"
 
 CPage2::CPage2(HINSTANCE hInst, HPROPSHEETPAGE *pPsPages, SHAREDWIZDATA *pWizData)
+	: CPageBase(hInst)
 {
-	PROPSHEETPAGE psp;
-	ZeroMemory(&psp, sizeof(psp));
+	m_pPropSheetPageBuilder->dwFlags = PSP_DEFAULT | PSP_USEHEADERTITLE | PSP_USEHEADERSUBTITLE;
+	m_pPropSheetPageBuilder->pszHeaderTitle = MAKEINTRESOURCE(IDS_PAGE2_TITLE);
+	m_pPropSheetPageBuilder->pszHeaderSubTitle = MAKEINTRESOURCE(IDS_PAGE2_SUBTITLE);
+	m_pPropSheetPageBuilder->pszTemplate = MAKEINTRESOURCE(IDD_PAGE2);
 
-	psp.dwSize = sizeof(psp);
-	psp.dwFlags = PSP_DEFAULT | PSP_USEHEADERTITLE | PSP_USEHEADERSUBTITLE;
-	psp.hInstance = hInst;
-	psp.lParam = (LPARAM)&pWizData;
-	psp.pszHeaderTitle = MAKEINTRESOURCE(IDS_PAGE2_TITLE);
-	psp.pszHeaderSubTitle = MAKEINTRESOURCE(IDS_PAGE2_SUBTITLE);
-	psp.pszTemplate = MAKEINTRESOURCE(IDD_PAGE2);
-	psp.pfnDlgProc = (DLGPROC)DlgProc;
-	pPsPages[pageIndex] = CreatePropertySheetPage(&psp);
+	pPsPages[pageIndex] = CreatePropertySheetPage(m_pPropSheetPageBuilder);
+
+	Initialize();
 }
 
 CPage2::~CPage2()
@@ -44,16 +41,7 @@ LPCWSTR CPage2::OpenFolderPicker(HWND hWnd)
 
 LRESULT CPage2::DlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	SHAREDWIZDATA *pData = (SHAREDWIZDATA *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA);
-
-	if (uMsg == WM_INITDIALOG)
-	{
-		// load data
-		PROPSHEETPAGE* pPsPage = (PROPSHEETPAGE*)lParam;
-		pData = (SHAREDWIZDATA *)(pPsPage->lParam);
-		SetWindowLongPtr(hwndDlg, GWLP_USERDATA, (DWORD_PTR)pData);
-	}
-	else if (uMsg == WM_COMMAND)
+	if (uMsg == WM_COMMAND)
 	{
 		if (LOWORD(wParam) == IDC_BROWSE)
 		{
@@ -78,7 +66,7 @@ LRESULT CPage2::DlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				std::wstring path(textLen + 1, L'\0');
 				int copiedTextLen = GetWindowText(ctrl, &path[0], textLen + 1);
 				path.resize(copiedTextLen);
-				pData->path = path.c_str();
+				//pData->path = path.c_str(); // TODO(kawapure): Use class member
 			}
 			return TRUE;
 		}

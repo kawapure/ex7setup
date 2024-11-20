@@ -175,6 +175,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="installer.h" />
     <ClInclude Include="mui.h" />
+    <ClInclude Include="page_base.h" />
     <ClInclude Include="pages\page1.h" />
     <ClInclude Include="pages\page2.h" />
     <ClInclude Include="pages\page2_rsrc.h" />
@@ -188,6 +189,7 @@
   <ItemGroup>
     <ClCompile Include="installer.cpp" />
     <ClCompile Include="mui.c" />
+    <ClCompile Include="page_base.cpp" />
     <ClCompile Include="pages\page1.cpp" />
     <ClCompile Include="pages\page2.cpp" />
     <ClCompile Include="pages\page3.cpp" />

@@ -1,25 +1,16 @@
 #include "page1.h"
 
 CPage1::CPage1(HINSTANCE hInst, HPROPSHEETPAGE *pPsPages, SHAREDWIZDATA* pWizData)
+	: CPageBase(hInst)
 {
-	PROPSHEETPAGE psp;
-	ZeroMemory(&psp, sizeof(psp));
-	
-	psp.dwSize = sizeof(psp);
-	psp.dwFlags = PSP_DEFAULT | PSP_HIDEHEADER;
-	psp.hInstance = hInst;
-	psp.lParam = (LPARAM) &pWizData;
-	psp.pszHeaderTitle = MAKEINTRESOURCE(IDS_PAGE1_TITLE);
-	psp.pszTemplate = MAKEINTRESOURCE(IDD_PAGE1);
-	psp.pfnDlgProc = (DLGPROC)DlgProc;
+	m_pPropSheetPageBuilder->dwFlags = PSP_DEFAULT | PSP_HIDEHEADER;
+	m_pPropSheetPageBuilder->pszHeaderTitle = MAKEINTRESOURCE(IDS_PAGE1_TITLE);
+	m_pPropSheetPageBuilder->pszTemplate = MAKEINTRESOURCE(IDD_PAGE1);
 
 	HPROPSHEETPAGE hPsp = nullptr;
-	pPsPages[pageIndex] = hPsp = CreatePropertySheetPage(&psp);
+	pPsPages[pageIndex] = hPsp = CreatePropertySheetPage(m_pPropSheetPageBuilder);
 
-	if (!hPsp)
-	{
-		throw std::exception("Failed to create page.");
-	}
+	Initialize();
 }
 
 CPage1::~CPage1()
@@ -29,14 +20,8 @@ CPage1::~CPage1()
 
 LRESULT CPage1::DlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	SHAREDWIZDATA *pData = (SHAREDWIZDATA *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA);
 	if (uMsg == WM_INITDIALOG)
 	{
-		// load data
-		PROPSHEETPAGE *pPsPage = (PROPSHEETPAGE*)lParam;
-		pData = (SHAREDWIZDATA*)(pPsPage->lParam);
-		SetWindowLongPtr(hwndDlg, GWLP_USERDATA, (DWORD_PTR)pData);
-
 		HWND wlcmTitle = GetDlgItem(hwndDlg, IDC_WELC);
 		LOGFONT logFont = { 0 };
 		logFont.lfHeight = 20;
