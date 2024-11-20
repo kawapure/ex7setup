@@ -7,7 +7,7 @@
 class CPage3
 {
 public:
-	CPage3(HINSTANCE hInst, HPROPSHEETPAGE* psppage, SHAREDWIZDATA* wizdata);
+	CPage3(HINSTANCE hInst, HPROPSHEETPAGE *pPsPages, SHAREDWIZDATA *pWizData);
 	~CPage3();
 
 private:

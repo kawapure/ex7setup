@@ -49,7 +49,7 @@ void AppendLog(HWND status, LPCWSTR str, bool newline)
 }
 
 
-PIMAGE_SECTION_HEADER GetEnclosingSectionHeader(DWORD rva, PIMAGE_NT_HEADERS ntHeaders)
+PIMAGE_SECTION_HEADER GetEnclosingSectionHeader(DWORD rva, IMAGE_NT_HEADERS *ntHeaders)
 {
 	PIMAGE_SECTION_HEADER section = IMAGE_FIRST_SECTION(ntHeaders);
 	for (unsigned int i = 0; i < ntHeaders->FileHeader.NumberOfSections; i++, section++)
@@ -63,7 +63,7 @@ PIMAGE_SECTION_HEADER GetEnclosingSectionHeader(DWORD rva, PIMAGE_NT_HEADERS ntH
 	return nullptr;
 }
 
-LPVOID GetPtrFromRVA(DWORD rva, PIMAGE_NT_HEADERS ntHeaders, LPVOID imageBase)
+LPVOID GetPtrFromRVA(DWORD rva, IMAGE_NT_HEADERS *ntHeaders, void *imageBase)
 {
 	PIMAGE_SECTION_HEADER sectionHeader = GetEnclosingSectionHeader(rva, ntHeaders);
 	if (!sectionHeader) return nullptr;
@@ -71,7 +71,7 @@ LPVOID GetPtrFromRVA(DWORD rva, PIMAGE_NT_HEADERS ntHeaders, LPVOID imageBase)
 	return (LPVOID)((DWORD_PTR)imageBase + rva - delta);
 }
 
-void PrintSectionHeaders(LPCWSTR filePath,HWND status)
+void PrintSectionHeaders(LPCWSTR filePath, HWND status)
 {
 	HANDLE hFile = CreateFile(filePath, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	HANDLE hFileMapping = CreateFileMapping(hFile, NULL, PAGE_READWRITE, 0, 0, NULL);
@@ -122,7 +122,7 @@ void PrintSectionHeaders(LPCWSTR filePath,HWND status)
 	}
 }
 
-void PatchExplorerBinary(HWND status, SHAREDWIZDATA* pdata)
+void PatchExplorerBinary(HWND status, SHAREDWIZDATA *pdata)
 {
 	SetWindowText(status, L"");
 	if (pdata->path != NULL)

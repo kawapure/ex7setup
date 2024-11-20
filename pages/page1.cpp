@@ -1,6 +1,6 @@
 #include "page1.h"
 
-CPage1::CPage1(HINSTANCE hInst, HPROPSHEETPAGE *psppage, SHAREDWIZDATA* wizdata)
+CPage1::CPage1(HINSTANCE hInst, HPROPSHEETPAGE *pPsPages, SHAREDWIZDATA* pWizData)
 {
 	PROPSHEETPAGE psp;
 	ZeroMemory(&psp, sizeof(psp));
@@ -8,11 +8,11 @@ CPage1::CPage1(HINSTANCE hInst, HPROPSHEETPAGE *psppage, SHAREDWIZDATA* wizdata)
 	psp.dwSize = sizeof(psp);
 	psp.dwFlags = PSP_DEFAULT | PSP_HIDEHEADER;
 	psp.hInstance = hInst;
-	psp.lParam = (LPARAM) &wizdata;
+	psp.lParam = (LPARAM) &pWizData;
 	psp.pszHeaderTitle = MAKEINTRESOURCE(IDS_PAGE1_TITLE);
 	psp.pszTemplate = MAKEINTRESOURCE(IDD_PAGE1);
 	psp.pfnDlgProc = (DLGPROC)DlgProc;
-	psppage[pageIndex] = CreatePropertySheetPage(&psp);
+	pPsPages[pageIndex] = CreatePropertySheetPage(&psp);
 }
 
 CPage1::~CPage1()
@@ -22,13 +22,13 @@ CPage1::~CPage1()
 
 LRESULT CPage1::DlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	SHAREDWIZDATA* pdata = (SHAREDWIZDATA*)GetWindowLongPtr(hwndDlg, GWLP_USERDATA);
+	SHAREDWIZDATA *pData = (SHAREDWIZDATA *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA);
 	if (uMsg == WM_INITDIALOG)
 	{
 		// load data
-		PROPSHEETPAGE* psp = (PROPSHEETPAGE*)lParam;
-		pdata = (SHAREDWIZDATA*)(psp->lParam);
-		SetWindowLongPtr(hwndDlg, GWLP_USERDATA, (DWORD_PTR)pdata);
+		PROPSHEETPAGE *pPsPage = (PROPSHEETPAGE*)lParam;
+		pData = (SHAREDWIZDATA*)(pPsPage->lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA, (DWORD_PTR)pData);
 
 		HWND wlcmTitle = GetDlgItem(hwndDlg, IDC_WELC);
 		LOGFONT logFont = { 0 };
@@ -39,7 +39,7 @@ LRESULT CPage1::DlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		HFONT hf = CreateFontIndirect(&logFont);
 		SendMessage(wlcmTitle, WM_SETFONT, (WPARAM)hf, TRUE);
 
-		//center the dialog
+		// Center the dialog
 		RECT rect;
 		GetWindowRect(GetParent(hwndDlg), &rect);
 
